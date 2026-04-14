@@ -1,17 +1,4 @@
-"""
-ARGUS Corridor Intelligence — Single-file application.
-Corrected truck detection aligned with Fisser et al. (2022) / S2TD reference.
 
-Fixes vs. original:
-1. Feature stack matches Table 1: variance(RGB), nratio(R,B), nratio(G,B), mean-centered B04/B03/B02/B08
-2. Uses trained RF pickle from S2TruckDetect when available, proxy classifier as fallback
-3. Recursive object extraction matches reference _cluster_array (9×9 subset, probability tie-breaking,
-   red-count guard, skip-one logic)
-4. Post-processing applies 0.75 threshold on background probabilities before argmax
-5. Score = mean_max_spectral_probability + mean_spectral_probability (two terms, not three)
-6. Band ordering: B04(R), B03(G), B02(B), B08(NIR) from evalscript
-7. Missing imageio import added; crop saving works
-"""
 
 import os
 import time
