@@ -304,7 +304,7 @@ No RF model? The proxy uses hand-tuned heuristics. About 40-50% less accurate. F
 
 ## References
 
-Fisser, H., Rahimi, E., Tetteh, M., Hoeser, T., Mayer-Gurr, T., and Kunzer, C. [Detecting Moving Trucks on Roads Using Sentinel-2 Data](https://doi.org/10.1016/j.rse.2022.113088). Remote Sensing of Environment, 2022.
+Fisser, H., Rahimi, E., Tetteh, M., Hoeser, T., Mayer-Gurr, T., and Kunzer, C. [Detecting Moving Trucks on Roads Using Sentinel-2 Data](https://ui.adsabs.harvard.edu/abs/2022RemS...14.1595F/abstract). Remote Sensing of Environment, 2022.
 
 Reference implementation: [S2TruckDetect](https://ui.adsabs.harvard.edu/abs/2022RemS...14.1595F/abstract) by Henrik Fisser.
 
