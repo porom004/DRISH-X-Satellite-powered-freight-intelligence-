@@ -4,7 +4,7 @@
 
 **See what's moving. Anywhere. For free.**
 
-Automated vehicle traffic intelligence from Sentinel-2 satellite imagery. No sensors, no subscriptions, no permissions.
+Automated vehicle traffic intelligence from Sentinel-2 satellite imagery.
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
