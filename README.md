@@ -163,6 +163,10 @@ Sentinel-2 Image (10m resolution, 5-day revisit)
 
 ### Capabilities and Limits
 
+<img width="1700" height="1075" alt="Image" src="https://github.com/user-attachments/assets/c9c32a92-9fe8-4bc9-b728-9e997096f456" />
+You can also compare trends and historical data between areas
+
+
 **What it does well:**
 
 - Count large vehicles (trucks, buses) on major highways, roughly 70-80% detection rate with the trained model on European motorways
