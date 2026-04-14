@@ -87,21 +87,17 @@ DrishX implements the Fisser et al. (2022) truck detection methodology as a read
 ### Install and run
 
 ```bash
-git clone https://github.com/sparkyniner/DRISH-X-Satellite-powered-freight-intelligence-.git
+git clone https://github.com/yourusername/drishx.git
 cd drishx
 
 pip install -r requirements.txt
 
-# Set up credentials
-cp .env.example .env
-# Edit .env with your COPERNICUS_CLIENT_ID and COPERNICUS_CLIENT_SECRET
-
-# Place rf_model.pickle in the project root (see below)
-
 python drishx.py
 ```
 
-Open `http://localhost:8000`.
+Open `http://localhost:8000`. Click the **Copernicus Link** tab in the sidebar and enter your Client ID and Client Secret to connect the satellite API. That is it. No config files needed.
+
+If you prefer environment variables instead of the UI, you can copy `.env.example` to `.env` and fill in your keys there. Both methods work. The UI tab is just easier for most people.
 
 ### Getting the Model
 
@@ -124,10 +120,12 @@ export DRISHX_DATA_DIR=/path/to/your/storage
 
 ### Environment Variables
 
+These are optional if you use the Copernicus Link tab in the UI instead.
+
 | Variable | Required | Description |
 |---|---|---|
-| `COPERNICUS_CLIENT_ID` | Yes | Copernicus Data Space OAuth client ID |
-| `COPERNICUS_CLIENT_SECRET` | Yes | Copernicus Data Space OAuth client secret |
+| `COPERNICUS_CLIENT_ID` | Yes (or use UI) | Copernicus Data Space OAuth client ID |
+| `COPERNICUS_CLIENT_SECRET` | Yes (or use UI) | Copernicus Data Space OAuth client secret |
 | `RF_MODEL_PATH` | No | Path to trained RF model (defaults to `./rf_model.pickle`) |
 | `DRISHX_DATA_DIR` | No | Root directory for all data (defaults to `./drishx_data`) |
 
@@ -221,7 +219,7 @@ Use "Draw AOI" on the map view. Not built-in, but they produce strong results.
 drishx/
 +-- drishx.py              # Backend: API + detection engine
 +-- rf_model.pickle        # Trained RF model (not in repo)
-+-- .env                   # Credentials (not in repo)
++-- .env                   # Credentials (not in repo, optional if using UI)
 +-- requirements.txt       # Dependencies
 +-- frontend/
 |   +-- index.html         # Dashboard
@@ -288,7 +286,7 @@ Sentinel-2 imagery: [Copernicus Open Access License](https://open.esa.int/copern
 
 <div align="center">
 
-
+**Free satellite data. Published science. The roads tell the story.**
 
 *DrishX, from the Sanskrit drishti: sight, vision, perspective.*
 
