@@ -57,25 +57,15 @@ To be clear about what this means in practice: DrishX can tell you that vehicle 
 
 The same limitations apply to nuclear or WMD monitoring. You can observe whether traffic patterns on access roads to known facilities have changed. You cannot determine what is being transported. The intelligence value is in the pattern and the change, not in the individual detection.
 
-### Infrastructure Verification
-
-Governments and development banks fund road projects based on projected utilization. DrishX provides independent before-and-after verification. Did that new highway attract the traffic the business case promised? Track construction corridors to measure when routes come online and how quickly usage ramps.
 
 ### Disaster and Crisis Response
 
 After floods, earthquakes, or conflict, which roads are actually operational? DrishX can compare current vehicle activity against a historical baseline to identify corridors that have gone quiet (blocked, damaged) or corridors carrying unusual volume (diversion routes, evacuation flows). Especially useful in areas with poor real-time reporting infrastructure.
 
-### Environmental and Urban Research
-
-Study the relationship between road traffic patterns and air quality, noise pollution, or land use change. Track how new developments affect traffic on surrounding road networks. Measure seasonal freight patterns linked to agricultural cycles. Harvest season volume spikes on corridors connecting farming regions to ports are clearly visible in the data.
 
 ### Journalism and Investigations
 
 Need evidence that does not come from a press release? DrishX gives you satellite-derived, timestamped, independently verifiable data. When officials claim a trade corridor is thriving, you can check. When a new road is supposedly complete, you can see if anyone is actually using it. The data comes from a European Space Agency satellite, not from any government or corporation with a stake in the answer.
-
-### Academic Research
-
-DrishX implements the Fisser et al. (2022) truck detection methodology as a ready-to-use tool. Use it for large-scale transport geography studies, economic development analysis, validation of traffic models, or as a teaching tool demonstrating how satellite remote sensing answers real-world questions.
 
 ## Quick Start
 
