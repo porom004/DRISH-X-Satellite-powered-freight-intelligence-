@@ -83,7 +83,7 @@ git clone https://github.com/sparkyniner/DRISH-X-Satellite-powered-freight-intel
 cd DRISH-X-Satellite-powered-freight-intelligence-
  
 # Create and activate a virtual environment
-python -m venv venv
+python3.11 -m venv venv
  
 # On macOS / Linux:
 source venv/bin/activate
