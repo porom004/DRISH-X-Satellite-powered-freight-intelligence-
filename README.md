@@ -90,16 +90,6 @@ Open `http://localhost:8000`. Click the **Copernicus Link** tab in the sidebar a
 
 If you prefer environment variables instead of the UI, you can copy `.env.example` to `.env` and fill in your keys there. Both methods work. The UI tab is just easier for most people.
 
-### Getting the Model
-
-DrishX works best with the trained Random Forest model from the [S2TruckDetect](https://github.com/hfisser/S2TruckDetect) project by Henrik Fisser. Place `rf_model.pickle` in the project root.
-
-Without the model, DrishX falls back to a built-in proxy classifier. It works, and you can explore the interface, but expect roughly 60-70% of the trained model's accuracy. The proxy exists so you can evaluate the tool before tracking down the model file.
-
-Custom path:
-```bash
-export RF_MODEL_PATH=/path/to/your/rf_model.pickle
-```
 
 ### Data Storage
 
