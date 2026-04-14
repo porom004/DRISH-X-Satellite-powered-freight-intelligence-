@@ -14,7 +14,7 @@ class DrishXDashboard {
         this.selectedMissionIds = new Set();
         this.allMissions = [];
         this.allMissionsFetched = false;
-        
+
         this.init();
     }
 
@@ -22,7 +22,7 @@ class DrishXDashboard {
         console.log("Initializing DrishX Operational Link...");
         this.setupMap();
         this.setupEventListeners();
-        
+
         // Initial data fetch
         await this.fetchSites();
 
@@ -79,11 +79,11 @@ class DrishXDashboard {
 
     updateBasemap() {
         if (this.currentBasemap) this.map.removeLayer(this.currentBasemap);
-        
-        const url = this.isSatellite 
+
+        const url = this.isSatellite
             ? 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
             : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-            
+
         this.currentBasemap = L.tileLayer(url, {
             subdomains: 'abcd',
             maxZoom: 20
@@ -115,21 +115,21 @@ class DrishXDashboard {
 
         // Trends Controls
         document.getElementById('refresh-trends')?.addEventListener('click', () => this.updateTrends());
-        
+
         // Initialize Flatpickr for better calendar experience
         const fpConfig = {
             theme: "dark",
             dateFormat: "Y-m-d",
             onChange: () => this.updateTrends()
         };
-        
+
         flatpickr("#trend-from", fpConfig);
         flatpickr("#trend-to", fpConfig);
 
         // Search Bar
         const searchBtn = document.getElementById('execute-search');
         const searchInput = document.getElementById('map-search-input');
-        
+
         searchBtn?.addEventListener('click', () => this.handleLocationSearch());
         searchInput?.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.handleLocationSearch();
@@ -143,6 +143,9 @@ class DrishXDashboard {
         document.getElementById('close-intel')?.addEventListener('click', () => {
             document.getElementById('intel-drawer').classList.add('hidden');
         });
+
+        // Copernicus Auth Link (BYOK)
+        document.getElementById('save-auth')?.addEventListener('click', () => this.handleAuthSave());
     }
 
     async handleLocationSearch() {
@@ -179,7 +182,7 @@ class DrishXDashboard {
         this.map.flyTo([lat, lon], 15, { duration: 1.5 });
         document.getElementById('search-results-dropdown').classList.add('hidden');
         this.notify(`Navigating to sector: ${label}`, "info");
-        
+
         // Brief highlight
         const circle = L.circle([lat, lon], {
             radius: 500,
@@ -188,7 +191,7 @@ class DrishXDashboard {
             fillOpacity: 0.1,
             dashArray: '5, 10'
         }).addTo(this.map);
-        
+
         setTimeout(() => this.map.removeLayer(circle), 3000);
     }
 
@@ -221,16 +224,16 @@ class DrishXDashboard {
         const toDate = document.getElementById('trend-to').value;
         const siteIdsArray = Array.from(this.selectedMissionIds || []);
         const siteIds = siteIdsArray.join(',');
-        
+
         try {
             const resp = await fetch(`/api/analytics/trends?from_date=${fromDate}&to_date=${toDate}${siteIds ? `&site_ids=${siteIds}` : ''}`);
             const data = await resp.json();
-            
+
             // Update stats
             document.getElementById('stat-total').textContent = data.summary.total_detections;
             document.getElementById('stat-peak').textContent = data.summary.missions_count + " Sectors";
             document.getElementById('stat-avg').textContent = data.datasets.length;
-            
+
             this.renderTrendChart(data);
             this.updateMissionSelector();
         } catch (e) {
@@ -257,12 +260,12 @@ class DrishXDashboard {
 
     renderMissionChecklist(container) {
         if (!this.selectedMissionIds) this.selectedMissionIds = new Set();
-        
+
         container.innerHTML = this.allMissions.map((m, i) => {
             const isActive = this.selectedMissionIds.has(m.id);
             const colors = ["#3b82f6", "#f59e0b", "#10b981", "#ef4444", "#a855f7", "#ec4899"];
             const color = colors[i % colors.length];
-            
+
             return `
                 <div class="comparison-item ${isActive ? 'active' : ''}" onclick="window.dashboard.toggleMissionComparison('${m.id}')">
                     <span class="color-dot" style="background: ${color}"></span>
@@ -307,7 +310,7 @@ class DrishXDashboard {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { 
+                    legend: {
                         display: true,
                         labels: { color: '#94a3b8', boxWidth: 12, padding: 20 }
                     },
@@ -339,14 +342,14 @@ class DrishXDashboard {
         const sw = bounds instanceof L.LatLngBounds ? bounds.getSouthWest() : { lat: bounds[0], lng: bounds[1] };
         const ne = bounds instanceof L.LatLngBounds ? bounds.getNorthEast() : { lat: bounds[2], lng: bounds[3] };
         const bbox = bounds instanceof L.LatLngBounds ? [sw.lat, sw.lng, ne.lat, ne.lng] : bounds;
-        
+
         // Prepare HUD
         const hud = document.getElementById('progress-hud');
         const progressBar = document.getElementById('hud-progress-bar');
         const stepText = document.getElementById('hud-step-text');
         const percentText = document.getElementById('hud-percent-text');
         const logConsole = document.getElementById('hud-log');
-        
+
         hud.classList.remove('hidden');
         progressBar.style.width = '0%';
         stepText.innerText = "Initializing mission...";
@@ -364,7 +367,7 @@ class DrishXDashboard {
             logConsole.appendChild(entry);
             logConsole.scrollTop = logConsole.scrollHeight;
         };
-        
+
         const months = parseInt(document.getElementById('mission-months')?.value || 4);
         const frames = parseInt(document.getElementById('mission-frames')?.value || 10);
         const label = siteName ? `Mission: ${siteName}` : `Analysis Area ${new Date().toLocaleTimeString()} (${months}mo, ${frames}fr)`;
@@ -389,7 +392,7 @@ class DrishXDashboard {
             while (true) {
                 const { done, value } = await reader.read();
                 if (done) break;
-                
+
                 buffer += decoder.decode(value, { stream: true });
                 const lines = buffer.split('\n');
                 buffer = lines.pop(); // Keep partial line in buffer
@@ -398,7 +401,7 @@ class DrishXDashboard {
                     if (!line.trim()) continue;
                     try {
                         const evt = JSON.parse(line);
-                        
+
                         if (evt.type === 'progress') {
                             progressBar.style.width = `${evt.percent}%`;
                             percentText.innerText = `${evt.percent}%`;
@@ -407,13 +410,13 @@ class DrishXDashboard {
                         } else if (evt.type === 'result') {
                             appendLog("Mission complete. Synchronizing results...");
                             this.notify(evt.message, "success");
-                            
+
                             // Successful finish
                             setTimeout(() => {
                                 hud.classList.add('hidden');
                                 this.fetchRoads(bbox);
                                 this.fetchSites();
-                                
+
                                 // Show observation markers if available
                                 if (evt.mission_id) {
                                     this.loadMissionMarkers(evt.mission_id);
@@ -449,7 +452,7 @@ class DrishXDashboard {
 
     renderRoads(geojson) {
         if (this.roadLayer) this.map.removeLayer(this.roadLayer);
-        
+
         this.roadLayer = L.geoJSON(geojson, {
             style: {
                 color: 'var(--accent-amber)',
@@ -458,7 +461,7 @@ class DrishXDashboard {
                 dashArray: '5, 5'
             }
         }).addTo(this.map);
-        
+
         this.notify("Road corridors identified and highlighted.", "info");
     }
 
@@ -567,7 +570,7 @@ class DrishXDashboard {
         this.sites.forEach(site => {
             const marker = L.marker([site.lat, site.lng], { icon })
                 .addTo(this.map);
-            
+
             const popupContent = document.createElement('div');
             popupContent.className = 'marker-popup';
             popupContent.innerHTML = `
@@ -585,7 +588,7 @@ class DrishXDashboard {
 
             marker.bindPopup(popupContent);
             marker.bindTooltip(`<b>${site.name}</b>`, { direction: 'top' });
-            
+
             this.markers[site.id] = marker;
         });
     }
@@ -603,7 +606,7 @@ class DrishXDashboard {
     checkStoredCredentials() {
         const id = localStorage.getItem('drishx_copernicus_id');
         const secret = localStorage.getItem('drishx_copernicus_secret');
-        
+
         if (id && secret) {
             console.log("DrishX: Stored tactical credentials found. Establishing link...");
             const idInput = document.getElementById('copernicus-id');
@@ -651,7 +654,7 @@ class DrishXDashboard {
             if (data.status === 'success') {
                 localStorage.setItem('drishx_copernicus_id', id);
                 localStorage.setItem('drishx_copernicus_secret', secret);
-                
+
                 if (!silent) {
                     statusEl.innerHTML = '<i class="fas fa-check-circle text-success"></i> Tactical Link Established.';
                     this.notify("DrishX: Copernicus link active.", "success");
