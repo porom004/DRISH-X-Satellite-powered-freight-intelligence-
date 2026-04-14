@@ -13,8 +13,8 @@ osmnx
 geopandas
 shapely
 imageio
-numpy
+numpy<2.0.0
 rasterio
 
-# Machine Learning (Version pinned for rf_model.pickle compatibility)
-scikit-learn==0.23.2
+# Machine Learning (Modernized for Python 3.12+ build compatibility)
+scikit-learn>=1.2.2
