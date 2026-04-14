@@ -192,8 +192,8 @@ Pre-configured from the original S2TruckDetect research:
 Use "Draw AOI" on the map view. Not built-in, but they produce strong results.
 
 **Chokepoints and disruption indicators:**
-- Shahid Rajaee Highway, Bandar Abbas, Iran. 70% of Iran's container trade. Bbox: `27.08, 56.05, 27.14, 56.15`
-- Bandar Abbas to Sirjan Road (Highway 71). Primary northbound artery from Iran's main port. Bbox: `27.15, 56.15, 27.22, 56.25`
+- Shahid Rajaee Highway, Bandar Abbas, Iran. 70% of Iran's container trade.
+- Bandar Abbas to Sirjan Road (Highway 71). Primary northbound artery from Iran's main port.
 - Rotterdam A15. Europe's busiest port feeder highway.
 - Laredo I-35, Texas. Largest US-Mexico freight crossing.
 
