@@ -110,6 +110,36 @@ Open `http://localhost:8000`. Click the **Copernicus Link** tab in the sidebar a
 
 If you prefer environment variables instead of the UI, you can copy `.env.example` to `.env` and fill in your keys there. Both methods work. The UI tab is just easier for most people.
 
+## Using the Interface
+
+DrishX is designed to be used directly from the browser with minimal setup.
+
+### Selecting an Area of Interest (AOI)
+
+- Right-click anywhere on the map  
+- Click **“Draw AOI”**  
+- Drag to define your analysis region  
+
+The system will automatically:
+- detect road corridors in the selected area  
+- fetch satellite data  
+- begin analysis  
+
+---
+
+### Recommended Settings
+
+For best results:
+
+- **Mode:** Use **Dense Mode** for maximum data coverage  
+- **Timeline:** Adjust based on your use case:
+  - Short (1–2 weeks) → quick signals  
+  - Medium (1–3 months) → trend detection  
+  - Long (3–6 months) → strong baseline + anomaly detection  
+
+Dense mode increases the number of images processed, improving detection reliability, especially in regions with cloud cover.
+
+
 
 ### Data Storage
 
