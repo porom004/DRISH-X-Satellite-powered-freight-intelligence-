@@ -121,6 +121,7 @@ export DRISHX_DATA_DIR=/path/to/your/storage
 
 ### Environment Variables
 
+<img width="1702" height="1073" alt="Image" src="https://github.com/user-attachments/assets/4a131e82-db54-474d-829e-1e4582eed27d" />
 These are optional if you use the Copernicus Link tab in the UI instead.
 
 | Variable | Required | Description |
