@@ -74,6 +74,7 @@ Need evidence that does not come from a press release? DrishX gives you satellit
 - Python 3.11 (other verisons might not work)
 - A free [Copernicus Data Space](https://dataspace.copernicus.eu/) account (takes 2 minutes)
 - The trained RF model file (in the drishx sub directory)
+- Be patient it takes time soemtimes pinging mirrors for the road data
 
 ### Install and run
 
