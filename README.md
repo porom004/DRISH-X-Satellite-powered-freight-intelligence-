@@ -298,9 +298,7 @@ Trained on German autobahns. In practice:
 - South and Southeast Asia: mixed, monsoon season limits usable frames
 - Sub-Saharan Africa: good on paved trunk roads, weak on unpaved
 
-### Proxy Classifier
 
-No RF model? The proxy uses hand-tuned heuristics. About 40-50% less accurate. Fine for exploring the interface, not for serious analysis.
 
 ## References
 
